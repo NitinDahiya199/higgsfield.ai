@@ -1,0 +1,24 @@
+SaaS Features You MUST implement
+Auth & Access
+
+Email / OAuth
+
+JWT
+
+RBAC (Admin, User)
+
+Billing
+
+Stripe
+
+Credit-based usage
+
+Per render cost
+
+Storage
+
+Raw assets
+
+Rendered outputs
+
+Signed URLs
