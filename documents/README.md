@@ -107,7 +107,7 @@ This is a full-stack SaaS application that allows users to:
 
 2. **Beta Release** - End of Phase 8
    - All core features complete
-   - Billing integrated
+   - Billing integrated n
    - Ready for limited users
 
 3. **Production Release** - End of Phase 10
