@@ -13,7 +13,18 @@
 
 "use client";
 
-import { ArrowRightIcon } from "@/components/icons";
+import {
+  ArrowRightIcon,
+  CreateImageIcon,
+  CreateVideoIcon,
+  MotionControlIcon,
+  EditImageIcon,
+  BananaIcon,
+  FilmStripIcon,
+  UpArrowIcon,
+  SpeechBubbleIcon,
+  PersonSilhouetteIcon,
+} from "@/components/icons";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import Image from "next/image";
@@ -86,31 +97,51 @@ export default function Home() {
 
   // Main tools grid
   const mainTools = [
-    { name: "Create Image", icon: "🖼️", category: "Image" },
-    { name: "Create Video", icon: "🎬", category: "Video" },
+    { name: "Create Image", icon: CreateImageIcon, category: "Image" },
+    { name: "Create Video", icon: CreateVideoIcon, category: "Video" },
     {
       name: "Motion Control",
-      icon: "🎯",
+      icon: MotionControlIcon,
       category: "Motion",
       description: "Precise control of character actions and expressions up to 30 seconds",
     },
-    { name: "Edit Image", icon: "✏️", category: "Edit", description: "Brush areas to edit images" },
+    {
+      name: "Edit Image",
+      icon: EditImageIcon,
+      category: "Edit",
+      description: "Brush areas to edit images",
+    },
     {
       name: "Nano Banana Pro",
-      icon: "🍌",
+      icon: BananaIcon,
       category: "Pro",
       description: "Best 4K image model ever",
       badge: "UNLIMITED",
     },
     {
       name: "Kling Video Edit",
-      icon: "🎞️",
+      icon: FilmStripIcon,
       category: "Video",
       description: "Advanced video editing",
     },
-    { name: "Upscale", icon: "⬆️", category: "Enhance", description: "Enhance media quality" },
-    { name: "Lipsync Studio", icon: "💬", category: "Audio", description: "Create Talking Clips" },
-    { name: "Soul ID", icon: "👤", category: "Character", description: "Create unique character" },
+    {
+      name: "Upscale",
+      icon: UpArrowIcon,
+      category: "Enhance",
+      description: "Enhance media quality",
+    },
+    {
+      name: "Lipsync Studio",
+      icon: SpeechBubbleIcon,
+      category: "Audio",
+      description: "Create Talking Clips",
+    },
+    {
+      name: "Soul ID",
+      icon: PersonSilhouetteIcon,
+      category: "Character",
+      description: "Create unique character",
+    },
   ];
 
   // Top choice tools
@@ -293,29 +324,32 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-            {mainTools.map((tool, index) => (
-              <a
-                key={index}
-                href={`#${tool.name.toLowerCase().replace(/\s+/g, "-")}`}
-                className="group relative overflow-hidden rounded-sm border border-[#1F2329] bg-[#151A20] p-4 text-center transition-all hover:border-[#B8FF00] focus:outline-none focus:ring-2 focus:ring-[#B8FF00] focus:ring-offset-2 focus:ring-offset-[#0B0D0F]"
-              >
-                <div className="mb-2 flex justify-center">
-                  <span className="text-2xl">{tool.icon}</span>
-                </div>
-                <div className="mb-1 flex items-center justify-center gap-2">
-                  <h3 className="text-sm font-medium text-[#EDEDED]">{tool.name}</h3>
-                  {tool.badge && (
-                    <span className="rounded-sm bg-[#B8FF00] px-1.5 py-0.5 text-xs font-semibold text-[#0B0D0F]">
-                      {tool.badge}
-                    </span>
+            {mainTools.map((tool, index) => {
+              const IconComponent = tool.icon;
+              return (
+                <a
+                  key={index}
+                  href={`#${tool.name.toLowerCase().replace(/\s+/g, "-")}`}
+                  className="group relative overflow-hidden rounded-sm border border-[#1F2329] bg-[#151A20] p-4 text-center transition-all hover:border-[#B8FF00] focus:outline-none focus:ring-2 focus:ring-[#B8FF00] focus:ring-offset-2 focus:ring-offset-[#0B0D0F]"
+                >
+                  <div className="mb-2 flex justify-center">
+                    <IconComponent className="w-12 h-12 text-[#EDEDED]" />
+                  </div>
+                  <div className="mb-1 flex items-center justify-center gap-2">
+                    <h3 className="text-sm font-medium text-[#EDEDED]">{tool.name}</h3>
+                    {tool.badge && (
+                      <span className="rounded-sm bg-[#B8FF00] px-1.5 py-0.5 text-xs font-semibold text-[#0B0D0F]">
+                        {tool.badge}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-xs text-[#9AA0A6]">{tool.category}</p>
+                  {tool.description && (
+                    <p className="mt-2 text-xs text-[#9AA0A6]">{tool.description}</p>
                   )}
-                </div>
-                <p className="text-xs text-[#9AA0A6]">{tool.category}</p>
-                {tool.description && (
-                  <p className="mt-2 text-xs text-[#9AA0A6]">{tool.description}</p>
-                )}
-              </a>
-            ))}
+                </a>
+              );
+            })}
           </div>
         </div>
       </section>

@@ -368,6 +368,177 @@ export function ChartIcon({ className = "w-6 h-6" }: { className?: string }) {
   );
 }
 
+// Tool-specific icons for landing page
+export function CreateImageIcon({ className = "w-8 h-8" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={1.5}
+    >
+      {/* Frame */}
+      <rect
+        x="3"
+        y="3"
+        width="18"
+        height="18"
+        rx="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      {/* Image content - landscape */}
+      <path d="M3 15l5-4 4 3 5-4 3 2" strokeLinecap="round" strokeLinejoin="round" />
+      {/* Sun */}
+      <circle cx="18" cy="6" r="2" fill="currentColor" />
+      {/* Hills */}
+      <path d="M3 15l4-2 4 2 4-2 3 2" fill="currentColor" opacity="0.4" />
+    </svg>
+  );
+}
+
+export function CreateVideoIcon({ className = "w-8 h-8" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={1.5}
+    >
+      {/* Clapperboard shape */}
+      <path strokeLinecap="round" strokeLinejoin="round" d="M3 4h18v16H3V4z" />
+      {/* Diagonal divider */}
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M3 4l9 5m0 0v11m0-11l9-5"
+        strokeWidth={2}
+      />
+      {/* Horizontal lines */}
+      <path d="M3 8h18M3 12h18M3 16h18" strokeWidth={1} opacity="0.3" />
+    </svg>
+  );
+}
+
+export function MotionControlIcon({ className = "w-8 h-8" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={1.5}
+    >
+      {/* Target */}
+      <circle cx="12" cy="12" r="10" strokeWidth={1.5} />
+      <circle cx="12" cy="12" r="6" strokeWidth={1.5} />
+      <circle cx="12" cy="12" r="2" fill="currentColor" />
+      {/* Arrow */}
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M12 2v4m0 12v4M2 12h4m12 0h4"
+        strokeWidth={2}
+      />
+    </svg>
+  );
+}
+
+export function EditImageIcon({ className = "w-8 h-8" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={1.5}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+      />
+    </svg>
+  );
+}
+
+export function BananaIcon({ className = "w-8 h-8" }: { className?: string }) {
+  return (
+    <svg className={className} fill="currentColor" viewBox="0 0 24 24">
+      {/* Banana shape */}
+      <path d="M8 4c-2 0-4 1.5-4 4 0 4 2 7 5 9 3 2 6 2.5 9 1.5 3-1 5-3 5-5.5 0-4-3-6.5-7-6.5-1 0-2 .2-3 .5-1-.3-2-.5-3-.5z" />
+      {/* Banana curve lines */}
+      <path
+        d="M6 8c1 1 2 2 3 3M10 6c1 1 2 2 3 3M14 7c1 1 2 2 2 3"
+        stroke="currentColor"
+        strokeWidth="0.5"
+        fill="none"
+        opacity="0.3"
+      />
+    </svg>
+  );
+}
+
+export function FilmStripIcon({ className = "w-8 h-8" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={1.5}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M3 4h18v16H3V4zm2 2v12m14-12v12M7 6h2m-2 4h2m-2 4h2m6-8h2m-2 4h2m-2 4h2"
+      />
+    </svg>
+  );
+}
+
+export function UpArrowIcon({ className = "w-8 h-8" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={2}
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+    </svg>
+  );
+}
+
+export function SpeechBubbleIcon({ className = "w-8 h-8" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={1.5}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 000-8.741 5.969 5.969 0 01.474-.065 5.972 5.972 0 012.036-1.293A9.764 9.764 0 0112 3.75c4.97 0 9 3.694 9 8.25z"
+      />
+    </svg>
+  );
+}
+
+export function PersonSilhouetteIcon({ className = "w-8 h-8" }: { className?: string }) {
+  return (
+    <svg className={className} fill="currentColor" viewBox="0 0 24 24">
+      <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+    </svg>
+  );
+}
+
 // Icon mapping function
 export function getIcon(iconName: string, className = "w-6 h-6") {
   const icons: Record<string, React.ReactNode> = {
@@ -390,6 +561,15 @@ export function getIcon(iconName: string, className = "w-6 h-6") {
     wave: <WaveIcon className={className} />,
     snowflake: <SnowflakeIcon className={className} />,
     chart: <ChartIcon className={className} />,
+    createImage: <CreateImageIcon className={className} />,
+    createVideo: <CreateVideoIcon className={className} />,
+    motionControl: <MotionControlIcon className={className} />,
+    editImage: <EditImageIcon className={className} />,
+    banana: <BananaIcon className={className} />,
+    filmStrip: <FilmStripIcon className={className} />,
+    upArrow: <UpArrowIcon className={className} />,
+    speechBubble: <SpeechBubbleIcon className={className} />,
+    personSilhouette: <PersonSilhouetteIcon className={className} />,
   };
   return icons[iconName] || <div className={className} />;
 }
