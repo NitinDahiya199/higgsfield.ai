@@ -1,0 +1,260 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  OWNER
+  ADMIN
+  MEMBER
+  VIEWER
+}
+
+enum JobStatus {
+  PENDING
+  QUEUED
+  RUNNING
+  COMPLETED
+  FAILED
+  CANCELLED
+}
+
+enum StepType {
+  IMAGE_GENERATION
+  VIDEO_SYNTHESIS
+  MOTION_TRANSFER
+  POST_PROCESSING
+}
+
+enum AssetType {
+  IMAGE
+  VIDEO
+  AUDIO
+  OTHER
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  CANCELLED
+  PAST_DUE
+  UNPAID
+  TRIALING
+}
+
+enum PlanType {
+  FREE
+  PRO
+  ENTERPRISE
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  passwordHash  String?
+  name          String?
+  avatar        String?
+  emailVerified DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  // Relations
+  projects      Project[]
+  organizations OrganizationMember[]
+  subscriptions Subscription[]
+  usage         Usage[]
+  assets        Asset[]
+  presets       Preset[]
+}
+
+model Organization {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  members     OrganizationMember[]
+  projects    Project[]
+  subscription Subscription?
+}
+
+model OrganizationMember {
+  id             String       @id @default(cuid())
+  role           Role         @default(MEMBER)
+  userId         String
+  organizationId String
+  createdAt      DateTime     @default(now())
+  
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  
+  @@unique([userId, organizationId])
+  @@index([userId])
+  @@index([organizationId])
+}
+
+model Project {
+  id          String   @id @default(cuid())
+  name        String
+  thumbnail   String?
+  userId      String
+  organizationId String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  organization Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  jobs        Job[]
+  assets      Asset[]
+  
+  @@index([userId])
+  @@index([organizationId])
+}
+
+model Job {
+  id          String   @id @default(cuid())
+  projectId   String
+  status      JobStatus @default(PENDING)
+  progress    Int      @default(0)
+  currentStep String?
+  error       String?
+  
+  // Job configuration
+  prompt      String
+  presetId    String?
+  settings    Json?    // Additional settings
+  
+  // Results
+  imageUrl    String?
+  videoUrl    String?
+  thumbnailUrl String?
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  completedAt DateTime?
+  
+  project     Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  preset      Preset?  @relation(fields: [presetId], references: [id], onDelete: SetNull)
+  steps       JobStep[]
+  
+  @@index([projectId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model JobStep {
+  id          String   @id @default(cuid())
+  jobId       String
+  stepType    StepType
+  status      JobStatus @default(PENDING)
+  progress    Int      @default(0)
+  error       String?
+  resultUrl   String?
+  metadata    Json?
+  
+  startedAt   DateTime?
+  completedAt DateTime?
+  
+  job         Job      @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  
+  @@index([jobId])
+  @@index([status])
+}
+
+model Preset {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  category    String
+  thumbnail   String?
+  
+  // Preset configuration
+  config      Json     // Camera, motion, duration, etc.
+  
+  isDefault   Boolean  @default(false)
+  isPublic    Boolean  @default(true)
+  userId      String?  // null for default presets
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  user        User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  jobs        Job[]
+  
+  @@index([category])
+  @@index([isPublic])
+  @@index([isDefault])
+}
+
+model Asset {
+  id          String   @id @default(cuid())
+  name        String
+  type        AssetType
+  url         String
+  thumbnailUrl String?
+  size        Int      // bytes
+  width       Int?
+  height      Int?
+  duration    Int?     // seconds for video
+  
+  userId      String
+  projectId   String?
+  
+  createdAt   DateTime @default(now())
+  
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  project     Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  
+  @@index([userId])
+  @@index([projectId])
+  @@index([type])
+}
+
+model Subscription {
+  id              String   @id @default(cuid())
+  userId          String
+  organizationId  String? @unique
+  
+  stripeCustomerId String  @unique
+  stripeSubscriptionId String? @unique
+  stripePriceId   String?
+  
+  status          SubscriptionStatus
+  plan            PlanType
+  
+  currentPeriodStart DateTime?
+  currentPeriodEnd   DateTime?
+  cancelAtPeriodEnd  Boolean @default(false)
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  organization    Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  
+  @@index([userId])
+  @@index([stripeCustomerId])
+  @@index([status])
+}
+
+model Usage {
+  id          String   @id @default(cuid())
+  userId      String
+  date        DateTime @db.Date
+  
+  jobsCreated Int      @default(0)
+  creditsUsed Int      @default(0)
+  storageUsed Int      @default(0) // bytes
+  
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@unique([userId, date])
+  @@index([userId, date])
+}
