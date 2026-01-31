@@ -1,0 +1,634 @@
+/**
+ * Higgsfield.ai Landing Page
+ * AI-powered creative platform for images, videos, and content creation
+ *
+ * Design Philosophy:
+ * - Typography-first, editorial layouts
+ * - Layered dark palette (#0B0D0F → #111418 → #151A20)
+ * - Acid green accent (#B8FF00) used sparingly
+ * - Left-aligned hero, not centered
+ * - Cinematic darkness, not flat black
+ * - Confident restraint over decoration
+ */
+
+"use client";
+
+import { ArrowRightIcon } from "@/components/icons";
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
+import Image from "next/image";
+import { useState, useRef, useEffect } from "react";
+
+export default function Home() {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
+  const imageContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!imageContainerRef.current) return;
+
+      const rect = imageContainerRef.current.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width;
+      const y = (e.clientY - rect.top) / rect.height;
+
+      // Normalize to -1 to 1 range, centered at 0.5
+      setMousePosition({
+        x: (x - 0.5) * 2,
+        y: (y - 0.5) * 2,
+      });
+    };
+
+    const container = imageContainerRef.current;
+    if (container) {
+      container.addEventListener("mousemove", handleMouseMove);
+      return () => {
+        container.removeEventListener("mousemove", handleMouseMove);
+      };
+    }
+  }, []);
+
+  // Calculate 3D transform values based on mouse position
+  const rotateX = mousePosition.y * 15; // Max 15 degrees tilt
+  const rotateY = mousePosition.x * 15; // Max 15 degrees rotation
+  const translateX = mousePosition.x * 20; // Max 20px movement
+  const translateY = mousePosition.y * 20; // Max 20px movement
+  const scale = isHovered ? 1.05 : 1;
+
+  // Featured tools data
+  const featuredTools = [
+    {
+      name: "Grok Imagine",
+      description: "Generate cinematic videos with synchronized audio in seconds",
+      badge: null,
+    },
+    {
+      name: "Higgsfield Earn",
+      description: "Get paid for creating content with Higgsfield on social media",
+      badge: null,
+    },
+    {
+      name: "Create Your Viral AI Influencer",
+      description: "Get an exclusive free bundle to generate your first creator",
+      badge: "Free",
+    },
+    {
+      name: "Angles V2",
+      description: "Now with 360-degree coverage, better quality, and generation history",
+      badge: null,
+    },
+    {
+      name: "Unlimited Kling Motion Control",
+      description: "Copy motion from any video and apply it to your character instantly",
+      badge: "Unlimited",
+    },
+  ];
+
+  // Main tools grid
+  const mainTools = [
+    { name: "Create Image", icon: "🖼️", category: "Image" },
+    { name: "Create Video", icon: "🎬", category: "Video" },
+    {
+      name: "Motion Control",
+      icon: "🎯",
+      category: "Motion",
+      description: "Precise control of character actions and expressions up to 30 seconds",
+    },
+    { name: "Edit Image", icon: "✏️", category: "Edit", description: "Brush areas to edit images" },
+    {
+      name: "Nano Banana Pro",
+      icon: "🍌",
+      category: "Pro",
+      description: "Best 4K image model ever",
+      badge: "UNLIMITED",
+    },
+    {
+      name: "Kling Video Edit",
+      icon: "🎞️",
+      category: "Video",
+      description: "Advanced video editing",
+    },
+    { name: "Upscale", icon: "⬆️", category: "Enhance", description: "Enhance media quality" },
+    { name: "Lipsync Studio", icon: "💬", category: "Audio", description: "Create Talking Clips" },
+    { name: "Soul ID", icon: "👤", category: "Character", description: "Create unique character" },
+  ];
+
+  // Top choice tools
+  const topChoiceTools = [
+    { name: "Nano Banana Pro", description: "Best 4K image model ever", badge: "Unlimited" },
+    {
+      name: "Kling Motion Control",
+      description: "Precise control of character actions and expressions up to 30 seconds",
+      badge: "new",
+    },
+    { name: "AI Influencer Studio", description: "Create viral characters", badge: "new" },
+    { name: "Skin Enhancer", description: "Natural, realistic skin textures", badge: "Pro" },
+    { name: "Kling 2.6", description: "Cinematic videos with audio", badge: null },
+    {
+      name: "Angles 2.0",
+      description: "Generate any angle view for any image in seconds",
+      badge: "Pro",
+    },
+    {
+      name: "Face Swap",
+      description: "The best instant AI face swap technology for photos",
+      badge: null,
+    },
+    { name: "Seedream 4.5", description: "Next-gen 4K image model", badge: null },
+    {
+      name: "Transitions",
+      description: "Create seamless transitions between any shots effortlessly",
+      badge: "Trending",
+    },
+    {
+      name: "Recast",
+      description: "Industry-leading character swap for any video in seconds",
+      badge: "Pro",
+    },
+    {
+      name: "Click to Ad",
+      description: "Turn product links into UGC and professional video ads",
+      badge: "PRO",
+    },
+  ];
+
+  // Community gallery items
+  const communityGallery = [
+    {
+      title: "Mixed Media creations",
+      description: "Big-budget visual effects, from explosions to surreal transformations.",
+      imageBg: "bg-gradient-to-br from-purple-500/20 to-pink-500/20",
+    },
+    {
+      title: "Nano Banana Pro creations",
+      description: "Higgsfield's first high-aesthetic photo model",
+      imageBg: "bg-gradient-to-br from-green-500/20 to-cyan-500/20",
+    },
+    {
+      title: "Ready-to-share content",
+      description:
+        "Create ready-to-share content in one click — from viral effects to polished commercials, no editing needed.",
+      imageBg: "bg-gradient-to-br from-orange-500/20 to-red-500/20",
+    },
+    {
+      title: "Next-gen video creation",
+      description:
+        "Next-gen video creation powered by exclusive presets, seamless transitions, and pro-grade VFX.",
+      imageBg: "bg-gradient-to-br from-blue-500/20 to-indigo-500/20",
+    },
+    {
+      title: "Organic creator-style videos",
+      description: "Organic, creator-style videos that resonate with viewers",
+      imageBg: "bg-gradient-to-br from-yellow-500/20 to-amber-500/20",
+    },
+    {
+      title: "Professional brand videos",
+      description: "Professional videos that showcase your brand and products beautifully",
+      imageBg: "bg-gradient-to-br from-teal-500/20 to-emerald-500/20",
+    },
+  ];
+
+  return (
+    <div className="min-h-screen bg-[#0B0D0F] text-[#EDEDED]">
+      <Header />
+
+      {/* Hero Section — Updated to match reference (robot on left, text on right) */}
+      <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24" aria-labelledby="hero-heading">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 lg:items-center">
+            {/* Left Panel — 3D Robot Image with Interactive Tilt */}
+            <div className="order-2 lg:order-1 flex items-center justify-center lg:justify-start">
+              <div
+                ref={imageContainerRef}
+                className="relative h-[300px] w-full max-w-md lg:h-[450px] cursor-pointer"
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => {
+                  setIsHovered(false);
+                  setMousePosition({ x: 0, y: 0 });
+                }}
+                style={{ perspective: "1000px" }}
+              >
+                <div
+                  className="relative h-full w-full transition-transform duration-300 ease-out"
+                  style={{
+                    transform: `perspective(1000px) rotateX(${-rotateX}deg) rotateY(${rotateY}deg) translateX(${translateX}px) translateY(${translateY}px) scale(${scale})`,
+                    transformStyle: "preserve-3d",
+                  }}
+                >
+                  <Image
+                    src="/3d_robo.png"
+                    alt="AI Robot"
+                    fill
+                    className="object-contain transition-all duration-300"
+                    priority
+                    quality={90}
+                  />
+                  {/* Subtle glow effect on hover */}
+                  <div
+                    className="absolute inset-0 opacity-0 transition-opacity duration-300 pointer-events-none"
+                    style={{
+                      opacity: isHovered ? 0.2 : 0,
+                      background: `radial-gradient(circle at ${(mousePosition.x + 1) * 50}% ${(mousePosition.y + 1) * 50}%, rgba(184, 255, 0, 0.3), transparent 70%)`,
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Right Panel — Text Content */}
+            <div className="order-1 lg:order-2 max-w-2xl lg:ml-auto">
+              {/* Hero headline — Updated to match reference */}
+              <h1
+                id="hero-heading"
+                className="mb-6 text-4xl font-semibold leading-[1.1] tracking-tight text-[#EDEDED] lg:text-6xl"
+              >
+                What will you
+                <br />
+                <span className="text-[#B8FF00]">create today?</span>
+              </h1>
+
+              {/* Hero description — Updated to match reference */}
+              <p className="mb-8 max-w-2xl text-base leading-relaxed text-[#9AA0A6] lg:text-lg">
+                Explore Higgsfield Community gallery for stunning AI creations. Generate cinematic
+                videos, create viral content, and build your AI influencer with our powerful tools.
+              </p>
+
+              {/* CTA Buttons — Acid green accent for primary */}
+              <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
+                <a
+                  href="#signup"
+                  className="inline-flex items-center justify-center gap-2 rounded-sm bg-[#B8FF00] px-6 py-3 text-sm font-medium text-[#0B0D0F] transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#B8FF00] focus:ring-offset-2 focus:ring-offset-[#0B0D0F] lg:px-8 lg:py-4 lg:text-base"
+                >
+                  Start creating
+                  <ArrowRightIcon className="w-4 h-4" />
+                </a>
+                <a
+                  href="#demo"
+                  className="inline-flex items-center justify-center rounded-sm border border-[#1F2329] bg-transparent px-6 py-3 text-sm font-medium text-[#EDEDED] transition-colors hover:border-[#B8FF00] hover:text-[#B8FF00] focus:outline-none focus:ring-2 focus:ring-[#B8FF00] focus:ring-offset-2 focus:ring-offset-[#0B0D0F] lg:px-8 lg:py-4 lg:text-base"
+                >
+                  View community
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* "What will you create today?" Tools Section */}
+      <section
+        className="border-t border-[#1F2329] bg-[#0B0D0F] py-12 lg:py-16"
+        aria-labelledby="create-today-heading"
+      >
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          <div className="mb-8 flex items-center justify-between">
+            <h2 id="create-today-heading" className="text-2xl font-semibold text-[#EDEDED]">
+              What will you create today?
+            </h2>
+            <a
+              href="#all-tools"
+              className="text-sm text-[#9AA0A6] transition-colors hover:text-[#EDEDED]"
+            >
+              See all →
+            </a>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+            {mainTools.map((tool, index) => (
+              <a
+                key={index}
+                href={`#${tool.name.toLowerCase().replace(/\s+/g, "-")}`}
+                className="group relative overflow-hidden rounded-sm border border-[#1F2329] bg-[#151A20] p-4 text-center transition-all hover:border-[#B8FF00] focus:outline-none focus:ring-2 focus:ring-[#B8FF00] focus:ring-offset-2 focus:ring-offset-[#0B0D0F]"
+              >
+                <div className="mb-2 flex justify-center">
+                  <span className="text-2xl">{tool.icon}</span>
+                </div>
+                <div className="mb-1 flex items-center justify-center gap-2">
+                  <h3 className="text-sm font-medium text-[#EDEDED]">{tool.name}</h3>
+                  {tool.badge && (
+                    <span className="rounded-sm bg-[#B8FF00] px-1.5 py-0.5 text-xs font-semibold text-[#0B0D0F]">
+                      {tool.badge}
+                    </span>
+                  )}
+                </div>
+                <p className="text-xs text-[#9AA0A6]">{tool.category}</p>
+                {tool.description && (
+                  <p className="mt-2 text-xs text-[#9AA0A6]">{tool.description}</p>
+                )}
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Community Gallery Section */}
+      <section
+        className="border-t border-[#1F2329] bg-[#111418] py-16 lg:py-24"
+        aria-labelledby="community-gallery-heading"
+      >
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
+            {communityGallery.map((item, index) => (
+              <div
+                key={index}
+                className="group relative overflow-hidden rounded-lg border border-[#1F2329] bg-[#151A20] transition-all hover:border-[#B8FF00] hover:shadow-lg hover:shadow-[#B8FF00]/10"
+              >
+                <div className="p-6">
+                  <div className="mb-4 flex items-start justify-between">
+                    <h3 className="text-xl font-semibold text-[#EDEDED] lg:text-2xl">
+                      Explore Higgsfield Community gallery for stunning {item.title}
+                    </h3>
+                    <ArrowRightIcon className="w-5 h-5 text-[#9AA0A6] transition-transform group-hover:translate-x-1" />
+                  </div>
+                  <p className="text-sm text-[#9AA0A6] lg:text-base">{item.description}</p>
+                </div>
+                <div
+                  className={`h-48 ${item.imageBg} transition-transform duration-300 group-hover:scale-105`}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Announcements Section */}
+      <section
+        className="border-t border-[#1F2329] bg-[#0B0D0F] py-12 lg:py-16"
+        aria-labelledby="announcements-heading"
+      >
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          <h2 id="announcements-heading" className="sr-only">
+            Featured Announcements
+          </h2>
+          <div className="space-y-4">
+            {featuredTools.map((tool, index) => (
+              <a
+                key={index}
+                href={`#${tool.name.toLowerCase().replace(/\s+/g, "-")}`}
+                className="group block relative overflow-hidden rounded-sm border border-[#1F2329] bg-[#151A20] p-5 transition-all hover:border-[#B8FF00] focus:outline-none focus:ring-2 focus:ring-[#B8FF00] focus:ring-offset-2 focus:ring-offset-[#0B0D0F]"
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex-1">
+                    <div className="mb-2 flex items-center gap-3">
+                      <h3 className="text-lg font-semibold text-[#EDEDED] lg:text-xl">
+                        {tool.name}
+                      </h3>
+                      {tool.badge && (
+                        <span className="rounded-sm bg-[#B8FF00] px-2 py-1 text-xs font-semibold text-[#0B0D0F]">
+                          {tool.badge}
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-sm text-[#9AA0A6]">{tool.description}</p>
+                  </div>
+                  <ArrowRightIcon className="w-5 h-5 text-[#9AA0A6] transition-transform group-hover:translate-x-1" />
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Top Choice Section */}
+      <section
+        className="border-t border-[#1F2329] bg-[#111418] py-16 lg:py-24"
+        aria-labelledby="top-choice-heading"
+      >
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          <div className="mb-10 flex items-center justify-between">
+            <div>
+              <h2
+                id="top-choice-heading"
+                className="mb-2 text-3xl font-semibold leading-tight tracking-tight text-[#EDEDED] lg:text-4xl"
+              >
+                Top Choice
+              </h2>
+              <p className="text-base text-[#9AA0A6] lg:text-lg">
+                Creator-recommended tools tailored for you
+              </p>
+            </div>
+            <a
+              href="#all-tools"
+              className="text-sm text-[#9AA0A6] transition-colors hover:text-[#EDEDED] lg:text-base"
+            >
+              See all →
+            </a>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {topChoiceTools.map((tool, index) => (
+              <a
+                key={index}
+                href={`#${tool.name.toLowerCase().replace(/\s+/g, "-")}`}
+                className="group relative overflow-hidden rounded-sm border border-[#1F2329] bg-[#151A20] p-5 transition-all hover:border-[#B8FF00] focus:outline-none focus:ring-2 focus:ring-[#B8FF00] focus:ring-offset-2 focus:ring-offset-[#111418]"
+              >
+                <div className="mb-3 flex items-start justify-between gap-2">
+                  <h3 className="text-base font-semibold text-[#EDEDED] lg:text-lg">{tool.name}</h3>
+                  {tool.badge && (
+                    <span
+                      className={`rounded-sm px-2 py-0.5 text-xs font-semibold ${
+                        tool.badge.toLowerCase() === "new" || tool.badge === "Trending"
+                          ? "bg-[#B8FF00] text-[#0B0D0F]"
+                          : "bg-[#1F2329] text-[#EDEDED]"
+                      }`}
+                    >
+                      {tool.badge}
+                    </span>
+                  )}
+                </div>
+                <p className="text-sm text-[#9AA0A6]">{tool.description}</p>
+                <ArrowRightIcon className="mt-4 w-4 h-4 text-[#9AA0A6] transition-transform group-hover:translate-x-1" />
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Explore more AI features */}
+      <section
+        className="border-t border-[#1F2329] bg-[#0B0D0F] py-16 lg:py-24"
+        aria-labelledby="explore-heading"
+      >
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          <h2
+            id="explore-heading"
+            className="mb-10 text-3xl font-semibold leading-tight tracking-tight text-[#EDEDED] lg:text-4xl"
+          >
+            Explore more AI features
+          </h2>
+
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+            {[
+              "Cinema Studio",
+              "Visual Effects",
+              "Higgsfield Soul",
+              "Higgsfield Apps",
+              "Kling 2.1 Master",
+              "Camera Controls",
+              "Viral",
+              "Action movements",
+              "Commercial",
+              "MiniMax Hailuo 02",
+              "Seedance Pro",
+              "Community",
+              "Wan 2.2 Image",
+              "Seedream 4.0",
+              "Nano Banana",
+              "Flux Kontext",
+              "GPT Image",
+              "Topaz",
+              "Google Veo3",
+              "Kling 2.5 Turbo",
+              "Kling Avatars 2.0",
+              "Wan 2.5",
+              "Sora 2",
+              "Sora 2 Presets",
+              "Banana Placement",
+              "Product Placement",
+              "Edit Image",
+              "Multi Reference",
+              "Upscale",
+              "Assists",
+              "YouTube",
+              "TikTok",
+              "Instagram Reels",
+              "YouTube Shorts",
+              "Nano Banana Pro",
+              "Kling o1",
+            ].map((feature, index) => (
+              <a
+                key={index}
+                href={`#${feature.toLowerCase().replace(/\s+/g, "-")}`}
+                className="group rounded-sm border border-[#1F2329] bg-[#151A20] p-3 text-center transition-all hover:border-[#B8FF00] focus:outline-none focus:ring-2 focus:ring-[#B8FF00] focus:ring-offset-2 focus:ring-offset-[#0B0D0F]"
+              >
+                <span className="text-xs font-medium text-[#EDEDED] lg:text-sm">{feature}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* THE ULTIMATE AI-POWERED CAMERA CONTROL Section */}
+      <section
+        className="border-t border-[#1F2329] bg-[#111418] py-16 lg:py-24"
+        aria-labelledby="camera-control-heading"
+      >
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          <div className="mb-10 max-w-3xl">
+            <h2
+              id="camera-control-heading"
+              className="mb-6 text-3xl font-semibold leading-tight tracking-tight text-[#EDEDED] lg:text-4xl"
+            >
+              THE ULTIMATE AI-POWERED CAMERA CONTROL FOR FILMMAKERS & CREATORS
+            </h2>
+            <p className="text-base leading-relaxed text-[#9AA0A6] lg:text-lg">
+              AI-crafted cinematic moves like crash zooms and crane shots, fully controllable.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+            {[
+              "Eyes In",
+              "Mouth In",
+              "Flying Cam Transition",
+              "Handheld",
+              "Pan Right",
+              "Static",
+              "Bullet Time",
+              "Dolly Out",
+              "Through Object In",
+              "Car Grip",
+              "Pan Left",
+              "Dolly Left",
+              "Through Object Out",
+              "Dolly Right",
+              "Aerial Pullback",
+              "Rapid Zoom Out",
+              "BTS",
+              "Arc Right",
+              "Timelapse Human",
+              "FPV Drone",
+              "Crash Zoom In",
+              "Jib up",
+              "3D Rotation",
+              "Jib down",
+              "Snorricam",
+              "Timelapse Glam",
+              "Robo Arm",
+              "Rapid Zoom In",
+              "Incline",
+              "Arc Left",
+              "360 Orbit",
+              "Car Chasing",
+              "Crane Up",
+              "Crash Zoom Out",
+              "Dutch Angle",
+              "Fisheye",
+              "Dolly Zoom Out",
+              "Wiggle",
+              "Lazy Susan",
+              "Super Dolly In",
+              "Super Dolly Out",
+              "Crane Down",
+              "Low Shutter",
+              "Focus Change",
+              "YoYo Zoom",
+              "Double Dolly",
+              "Timelapse Landscape",
+              "Eating Zoom",
+              "Buckle Up",
+              "Tilt Down",
+              "Head Tracking",
+              "Crane Over The Head",
+              "Object POV",
+              "Overhead",
+            ].map((control, index) => (
+              <a
+                key={index}
+                href={`#${control.toLowerCase().replace(/\s+/g, "-")}`}
+                className="group rounded-sm border border-[#1F2329] bg-[#151A20] p-3 text-center transition-all hover:border-[#B8FF00] focus:outline-none focus:ring-2 focus:ring-[#B8FF00] focus:ring-offset-2 focus:ring-offset-[#111418]"
+              >
+                <span className="text-xs font-medium text-[#EDEDED] lg:text-sm">{control}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section — Updated to match reference style */}
+      <section
+        className="border-t border-[#1F2329] bg-[#0B0D0F] py-16 lg:py-24"
+        aria-labelledby="cta-heading"
+      >
+        <div className="mx-auto max-w-4xl px-6 text-center lg:px-12">
+          <h2
+            id="cta-heading"
+            className="mb-6 text-3xl font-semibold leading-tight tracking-tight text-[#EDEDED] lg:text-4xl"
+          >
+            Ready to create?
+          </h2>
+          <p className="mb-10 text-base leading-relaxed text-[#9AA0A6] lg:text-lg">
+            Start creating stunning AI-powered images and videos today. Join thousands of creators
+            in the Higgsfield community.
+          </p>
+          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <a
+              href="#signup"
+              className="inline-flex items-center justify-center gap-2 rounded-sm bg-[#B8FF00] px-6 py-3 text-sm font-medium text-[#0B0D0F] transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#B8FF00] focus:ring-offset-2 focus:ring-offset-[#0B0D0F] lg:px-8 lg:py-4 lg:text-base"
+            >
+              Get started for free
+              <ArrowRightIcon className="w-4 h-4" />
+            </a>
+            <a
+              href="#community"
+              className="inline-flex items-center justify-center rounded-sm border border-[#1F2329] bg-transparent px-6 py-3 text-sm font-medium text-[#EDEDED] transition-colors hover:border-[#B8FF00] hover:text-[#B8FF00] focus:outline-none focus:ring-2 focus:ring-[#B8FF00] focus:ring-offset-2 focus:ring-offset-[#0B0D0F] lg:px-8 lg:py-4 lg:text-base"
+            >
+              Explore Community Gallery
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
+}

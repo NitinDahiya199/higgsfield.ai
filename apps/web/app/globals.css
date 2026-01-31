@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+/* 
+━━━━━━━━━━━━━━━━━━━━
+PHASE 1 — Design Tokens (Exact Match: higgsfield.ai)
+━━━━━━━━━━━━━━━━━━━━
+
+COLOR SYSTEM (STRICT — MATCH HIGGSFIELD):
+Base colors:
+- Page background: #0B0D0F (near-black, slightly warm)
+- Section background (raised): #111418
+- Card / surface background: #151A20
+
+Text colors:
+- Primary text: #EDEDED (soft white, not pure)
+- Secondary text: #9AA0A6 (neutral gray)
+- Muted text / meta: #6F7681
+
+Accent colors (use SPARINGLY):
+- Primary accent: #B8FF00 (acid green / neon-lime)
+- Secondary accent: #7C8BFF (cool blue-violet)
+
+Contrast & Layers:
+- Layered darkness creates depth (0B0D0F → 111418 → 151A20)
+- High contrast text ensures readability (EDEDED on 0B0D0F = 15.8:1)
+- Accents used only for CTAs, highlights, focus states
+- No washed-out tones, all colors pass WCAG AA
+
+TYPOGRAPHY SCALE:
+- Hero headlines: 5xl-7xl (48-72px) / font-semibold / tight leading (1.0-1.1)
+- Section headings: 3xl-5xl (30-48px) / font-semibold
+- Body text: base-lg (16-18px) / regular weight / relaxed leading (1.6-1.7)
+- Small text: sm (14px) / muted color (#9AA0A6)
+- Meta text: xs-sm (12-14px) / very muted (#6F7681)
+
+SPACING SYSTEM:
+- Base unit: 8px (0.5rem)
+- Section vertical spacing: 120-160px (15-20rem)
+- Component spacing: 24-48px (1.5-3rem)
+- Editorial rhythm: Large gaps between sections, tight within components
+*/
+
+:root {
+  /* Layered Dark Palette (Exact Match) */
+  --background: #0B0D0F;
+  --section-bg: #111418;
+  --surface: #151A20;
+  
+  --foreground: #EDEDED;
+  --foreground-secondary: #9AA0A6;
+  --foreground-muted: #6F7681;
+  
+  --accent-primary: #B8FF00;
+  --accent-secondary: #7C8BFF;
+  
+  --border: #1F2329;
+  
+  /* Typography */
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-foreground-secondary: var(--foreground-secondary);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-section-bg: var(--section-bg);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-accent-primary: var(--accent-primary);
+  --color-accent-secondary: var(--accent-secondary);
+}
+
+* {
+  border-color: var(--border);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth scroll for anchor links */
+html {
+  scroll-behavior: smooth;
+}
