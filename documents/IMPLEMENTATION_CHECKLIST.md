@@ -46,16 +46,16 @@ Use this checklist to track your progress through the roadmap.
 - [ ] OAuth providers (Google, GitHub)
 - [ ] Session management
 - [ ] Rate limiting
-- [ ] Login page UI
-- [ ] Signup page UI
-- [ ] Email verification page
-- [ ] Password reset pages
-- [ ] OAuth callbacks
-- [ ] Protected routes
-- [ ] Auth context/provider
+- [x] Login page UI
+- [x] Signup page UI
+- [x] Email verification page
+- [x] Password reset pages
+- [x] OAuth callbacks
+- [x] Protected routes
+- [x] Auth context/provider
 - [ ] User profile API
 - [ ] Profile update API
-- [ ] Avatar upload
+- [x] Avatar upload (UI)
 - [ ] Account deletion
 
 ## Phase 3: Landing Page & Marketing
