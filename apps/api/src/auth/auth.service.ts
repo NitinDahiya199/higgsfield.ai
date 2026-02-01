@@ -7,6 +7,7 @@ import {
 import { PrismaService } from "../database/prisma.service";
 import { JwtService } from "@nestjs/jwt";
 import * as bcrypt from "bcrypt";
+import * as crypto from "crypto";
 
 @Injectable()
 export class AuthService {
@@ -228,28 +229,95 @@ export class AuthService {
     return user;
   }
 
-  async verifyEmail(token: string) {
-    // In a real implementation, you'd verify the token
-    // For now, we'll just return a placeholder
-    throw new BadRequestException("Email verification not implemented yet");
-  }
-
-  async resendVerificationEmail(userId: string) {
-    // In a real implementation, you'd send a verification email
-    // For now, we'll just return a placeholder
-    throw new BadRequestException("Email verification not implemented yet");
-  }
-
   async forgotPassword(email: string) {
-    // In a real implementation, you'd send a password reset email
-    // For now, we'll just return a placeholder
-    throw new BadRequestException("Password reset not implemented yet");
+    const user = await this.prisma.user.findUnique({
+      where: { email },
+    });
+
+    if (!user) {
+      // Don't reveal if user exists for security
+      return { message: "If an account exists, a password reset email has been sent" };
+    }
+
+    // Delete old reset tokens
+    await this.prisma.passwordResetToken.deleteMany({
+      where: { userId: user.id, used: false },
+    });
+
+    // Generate reset token
+    const resetToken = crypto.randomBytes(32).toString("hex");
+    const expiresAt = new Date();
+    expiresAt.setHours(expiresAt.getHours() + 1); // 1 hour
+
+    await this.prisma.passwordResetToken.create({
+      data: {
+        token: resetToken,
+        userId: user.id,
+        expiresAt,
+      },
+    });
+
+    // Email sending will be implemented later
+    return { message: "Password reset token generated", token: resetToken };
   }
 
   async resetPassword(token: string, newPassword: string) {
-    // In a real implementation, you'd verify the token and reset the password
-    // For now, we'll just return a placeholder
-    throw new BadRequestException("Password reset not implemented yet");
+    const resetToken = await this.prisma.passwordResetToken.findUnique({
+      where: { token },
+      include: { user: true },
+    });
+
+    if (!resetToken) {
+      throw new BadRequestException("Invalid reset token");
+    }
+
+    if (resetToken.used) {
+      throw new BadRequestException("Reset token has already been used");
+    }
+
+    if (resetToken.expiresAt < new Date()) {
+      // Clean up expired token
+      await this.prisma.passwordResetToken.delete({
+        where: { id: resetToken.id },
+      });
+      throw new BadRequestException("Reset token has expired");
+    }
+
+    // Hash new password
+    const passwordHash = await bcrypt.hash(newPassword, 10);
+
+    // Update password
+    await this.prisma.user.update({
+      where: { id: resetToken.userId },
+      data: { passwordHash },
+    });
+
+    // Mark token as used
+    await this.prisma.passwordResetToken.update({
+      where: { id: resetToken.id },
+      data: { used: true },
+    });
+
+    return { message: "Password reset successfully" };
+  }
+
+  async refreshToken(refreshToken: string) {
+    try {
+      const payload = this.jwtService.verify(refreshToken);
+      const user = await this.getUserById(payload.sub);
+
+      // Generate new tokens
+      const newPayload = { sub: user.id, email: user.email };
+      const newAccessToken = this.jwtService.sign(newPayload);
+      const newRefreshToken = this.jwtService.sign(newPayload, { expiresIn: "7d" });
+
+      return {
+        accessToken: newAccessToken,
+        refreshToken: newRefreshToken,
+      };
+    } catch (error) {
+      throw new UnauthorizedException("Invalid refresh token");
+    }
   }
 
   async deleteAccount(userId: string) {

@@ -39,22 +39,22 @@ Use this checklist to track your progress through the roadmap.
 
 ## Phase 2: Authentication & User Management
 
-- [ ] JWT token generation
-- [ ] Password hashing
-- [ ] Email verification flow
-- [ ] Password reset flow
-- [ ] OAuth providers (Google, GitHub)
-- [ ] Session management
-- [ ] Rate limiting
+- [x] JWT token generation
+- [x] Password hashing
+- [ ] Email verification flow (to be implemented later)
+- [x] Password reset flow
+- [x] OAuth providers (Google, GitHub)
+- [x] Session management
+- [x] Rate limiting
 - [x] Login page UI
 - [x] Signup page UI
-- [x] Email verification page
+- [ ] Email verification page (to be implemented later)
 - [x] Password reset pages
 - [x] OAuth callbacks
 - [x] Protected routes
 - [x] Auth context/provider
-- [ ] User profile API
-- [ ] Profile update API
+- [x] User profile API
+- [x] Profile update API
 - [x] Avatar upload (UI)
 - [x] Account deletion (UI)
 

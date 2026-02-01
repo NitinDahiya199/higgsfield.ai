@@ -11,6 +11,7 @@ import {
   UploadedFile,
   UseInterceptors,
 } from "@nestjs/common";
+import { Throttle } from "@nestjs/throttler";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { AuthGuard } from "@nestjs/passport";
 import { Request, Response } from "express";
@@ -99,12 +100,14 @@ export class AuthController {
 
   // Register
   @Post("register")
+  @Throttle({ default: { limit: 5, ttl: 60000 } }) // 5 requests per minute
   async register(@Body() body: { email: string; password: string; name?: string }) {
     return this.authService.register(body.email, body.password, body.name);
   }
 
   // Login
   @Post("login")
+  @Throttle({ default: { limit: 10, ttl: 60000 } }) // 10 requests per minute
   async login(@Body() body: { email: string; password: string }) {
     return this.authService.login(body.email, body.password);
   }
@@ -140,30 +143,24 @@ export class AuthController {
     return this.authService.updateAvatar(userId, avatarUrl);
   }
 
-  // Verify email
-  @Post("verify-email")
-  async verifyEmail(@Body() body: { token: string }) {
-    return this.authService.verifyEmail(body.token);
-  }
-
-  // Resend verification email
-  @Post("resend-verification")
-  @UseGuards(AuthGuard("jwt"))
-  async resendVerification(@Req() req: Request) {
-    const userId = (req.user as any)?.userId;
-    return this.authService.resendVerificationEmail(userId);
-  }
-
   // Forgot password
   @Post("forgot-password")
+  @Throttle({ default: { limit: 3, ttl: 60000 } }) // 3 requests per minute
   async forgotPassword(@Body() body: { email: string }) {
     return this.authService.forgotPassword(body.email);
   }
 
   // Reset password
   @Post("reset-password")
+  @Throttle({ default: { limit: 5, ttl: 60000 } }) // 5 requests per minute
   async resetPassword(@Body() body: { token: string; password: string }) {
     return this.authService.resetPassword(body.token, body.password);
+  }
+
+  // Refresh token
+  @Post("refresh")
+  async refreshToken(@Body() body: { refreshToken: string }) {
+    return this.authService.refreshToken(body.refreshToken);
   }
 
   // Delete account

@@ -110,7 +110,7 @@ export function Header() {
               Free
             </span>
           </Link>
-          <Link
+          {/* <Link
             href="#assist"
             className={`text-sm ${theme.textPrimary} transition-colors hover:text-[${theme.accent.primary}] focus:outline-none focus:ring-2 focus:ring-[${theme.accent.primary}] focus:ring-offset-2 focus:ring-offset-[${theme.background.primary}]`}
           >
@@ -127,17 +127,17 @@ export function Header() {
             className={`text-sm ${theme.textPrimary} transition-colors hover:text-[${theme.accent.primary}] focus:outline-none focus:ring-2 focus:ring-[${theme.accent.primary}] focus:ring-offset-2 focus:ring-offset-[${theme.background.primary}]`}
           >
             Community
-          </Link>
+          </Link> */}
         </div>
 
         {/* Right Side: Pricing, Login, Sign up / User Menu */}
         <div className="flex items-center gap-4">
-          <Link
+          {/* <Link
             href="#pricing"
             className={`hidden text-sm ${theme.textPrimary} transition-colors hover:text-[${theme.accent.primary}] lg:inline-block focus:outline-none focus:ring-2 focus:ring-[${theme.accent.primary}] focus:ring-offset-2 focus:ring-offset-[${theme.background.primary}]`}
           >
             Pricing
-          </Link>
+          </Link> */}
           {user ? (
             <>
               <Link
@@ -146,12 +146,12 @@ export function Header() {
               >
                 Dashboard
               </Link>
-              <Link
+              {/* <Link
                 href="/profile"
                 className={`hidden rounded-sm ${theme.buttonDark} px-4 py-2 text-sm font-medium ${theme.textPrimary} transition-colors hover:bg-[${theme.button.darkHover}] sm:inline-block focus:outline-none focus:ring-2 focus:ring-[${theme.accent.primary}] focus:ring-offset-2 focus:ring-offset-[${theme.background.primary}]`}
               >
                 Profile
-              </Link>
+              </Link> */}
               <button
                 onClick={handleLogout}
                 className={`hidden rounded-sm border border-[#1F2329] bg-[#151A20] px-4 py-2 text-sm font-medium text-[#EDEDED] transition-colors hover:border-red-500/50 hover:bg-red-500/10 hover:text-red-400 sm:inline-block focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-[${theme.background.primary}]`}
