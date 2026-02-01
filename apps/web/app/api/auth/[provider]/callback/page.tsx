@@ -4,9 +4,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/auth-context";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
-
-export default function OAuthCallbackPage({ params }: { params: { provider: string } }) {
+export default function OAuthCallbackPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const { refreshUser } = useAuth();
@@ -14,6 +12,8 @@ export default function OAuthCallbackPage({ params }: { params: { provider: stri
   const [message, setMessage] = useState("");
 
   useEffect(() => {
+    const token = searchParams.get("token");
+    const refreshToken = searchParams.get("refreshToken");
     const code = searchParams.get("code");
     const error = searchParams.get("error");
 
@@ -21,15 +21,28 @@ export default function OAuthCallbackPage({ params }: { params: { provider: stri
       // Use setTimeout to avoid setState in effect
       setTimeout(() => {
         setStatus("error");
-        setMessage("Authentication failed. Please try again.");
+        setMessage(decodeURIComponent(error) || "Authentication failed. Please try again.");
       }, 0);
       return;
     }
 
-    if (!code) {
+    // If we have a code, it means GitHub/Google redirected directly to frontend
+    // This happens if OAuth app callback URL is misconfigured
+    // We'll show an error asking user to check their OAuth app settings
+    if (code && !token) {
       setTimeout(() => {
         setStatus("error");
-        setMessage("Missing authorization code.");
+        setMessage(
+          "OAuth callback URL misconfigured. Please update your OAuth app callback URL to point to the backend: http://localhost:3001/api/auth/{provider}/callback"
+        );
+      }, 0);
+      return;
+    }
+
+    if (!token) {
+      setTimeout(() => {
+        setStatus("error");
+        setMessage("Missing authentication token.");
       }, 0);
       return;
     }
@@ -38,34 +51,27 @@ export default function OAuthCallbackPage({ params }: { params: { provider: stri
 
     const handleCallback = async () => {
       try {
-        const response = await fetch(`${API_URL}/api/auth/${params.provider}/callback`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ code }),
-        });
-
-        if (cancelled) return;
-
-        if (response.ok) {
-          const data = await response.json();
-          localStorage.setItem("token", data.accessToken);
-          if (data.refreshToken) {
-            localStorage.setItem("refreshToken", data.refreshToken);
-          }
-          await refreshUser();
-          setStatus("success");
-          setTimeout(() => {
-            router.push("/dashboard");
-          }, 1000);
-        } else {
-          const errorData = await response.json();
-          setStatus("error");
-          setMessage(errorData.message || "Authentication failed.");
+        // Store tokens directly since backend already processed OAuth
+        localStorage.setItem("token", token);
+        if (refreshToken) {
+          localStorage.setItem("refreshToken", refreshToken);
         }
-      } catch {
+
         if (cancelled) return;
+
+        // Refresh user data from backend
+        await refreshUser();
+
+        if (cancelled) return;
+
+        setStatus("success");
+        // Redirect to dashboard after successful login
+        setTimeout(() => {
+          router.push("/dashboard");
+        }, 1000);
+      } catch (error) {
+        if (cancelled) return;
+        console.error("OAuth callback error:", error);
         setStatus("error");
         setMessage("An error occurred during authentication.");
       }
@@ -76,7 +82,7 @@ export default function OAuthCallbackPage({ params }: { params: { provider: stri
     return () => {
       cancelled = true;
     };
-  }, [searchParams, params.provider, refreshUser, router]);
+  }, [searchParams, refreshUser, router]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-[#0B0D0F]">

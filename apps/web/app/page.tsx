@@ -28,6 +28,7 @@ import {
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import Image from "next/image";
+import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 
 export default function Home() {
@@ -395,7 +396,7 @@ export default function Home() {
           </h2>
           <div className="space-y-4">
             {featuredTools.map((tool, index) => (
-              <a
+              <Link
                 key={index}
                 href={`#${tool.name.toLowerCase().replace(/\s+/g, "-")}`}
                 className="group block relative overflow-hidden rounded-sm border border-[#1F2329] bg-[#151A20] p-5 transition-all hover:border-[#B8FF00] focus:outline-none focus:ring-2 focus:ring-[#B8FF00] focus:ring-offset-2 focus:ring-offset-[#0B0D0F]"
@@ -416,7 +417,7 @@ export default function Home() {
                   </div>
                   <ArrowRightIcon className="w-5 h-5 text-[#9AA0A6] transition-transform group-hover:translate-x-1" />
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </div>

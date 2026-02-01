@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { theme } from "@/lib/theme";
 
 export function Footer() {
@@ -21,28 +22,28 @@ export function Footer() {
             <h3 className={`mb-4 text-sm font-medium ${theme.textPrimary}`}>Product</h3>
             <ul className={`space-y-3 text-sm ${theme.textSecondary}`}>
               <li>
-                <a
+                <Link
                   href="#features"
                   className={`transition-colors hover:text-[${theme.text.primary}] focus:outline-none focus:ring-2 focus:ring-[${theme.accent.primary}] focus:ring-offset-2 focus:ring-offset-[${theme.background.primary}]`}
                 >
                   Features
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="#pricing"
                   className={`transition-colors hover:text-[${theme.text.primary}] focus:outline-none focus:ring-2 focus:ring-[${theme.accent.primary}] focus:ring-offset-2 focus:ring-offset-[${theme.background.primary}]`}
                 >
                   Pricing
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="#docs"
                   className={`transition-colors hover:text-[${theme.text.primary}] focus:outline-none focus:ring-2 focus:ring-[${theme.accent.primary}] focus:ring-offset-2 focus:ring-offset-[${theme.background.primary}]`}
                 >
                   Documentation
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -51,28 +52,28 @@ export function Footer() {
             <h3 className={`mb-4 text-sm font-medium ${theme.textPrimary}`}>Company</h3>
             <ul className={`space-y-3 text-sm ${theme.textSecondary}`}>
               <li>
-                <a
+                <Link
                   href="#about"
                   className={`transition-colors hover:text-[${theme.text.primary}] focus:outline-none focus:ring-2 focus:ring-[${theme.accent.primary}] focus:ring-offset-2 focus:ring-offset-[${theme.background.primary}]`}
                 >
                   About
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="#blog"
                   className={`transition-colors hover:text-[${theme.text.primary}] focus:outline-none focus:ring-2 focus:ring-[${theme.accent.primary}] focus:ring-offset-2 focus:ring-offset-[${theme.background.primary}]`}
                 >
                   Blog
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="#careers"
                   className={`transition-colors hover:text-[${theme.text.primary}] focus:outline-none focus:ring-2 focus:ring-[${theme.accent.primary}] focus:ring-offset-2 focus:ring-offset-[${theme.background.primary}]`}
                 >
                   Careers
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -81,28 +82,28 @@ export function Footer() {
             <h3 className={`mb-4 text-sm font-medium ${theme.textPrimary}`}>Support</h3>
             <ul className={`space-y-3 text-sm ${theme.textSecondary}`}>
               <li>
-                <a
+                <Link
                   href="#contact"
                   className={`transition-colors hover:text-[${theme.text.primary}] focus:outline-none focus:ring-2 focus:ring-[${theme.accent.primary}] focus:ring-offset-2 focus:ring-offset-[${theme.background.primary}]`}
                 >
                   Contact
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="#status"
                   className={`transition-colors hover:text-[${theme.text.primary}] focus:outline-none focus:ring-2 focus:ring-[${theme.accent.primary}] focus:ring-offset-2 focus:ring-offset-[${theme.background.primary}]`}
                 >
                   Status
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="#security"
                   className={`transition-colors hover:text-[${theme.text.primary}] focus:outline-none focus:ring-2 focus:ring-[${theme.accent.primary}] focus:ring-offset-2 focus:ring-offset-[${theme.background.primary}]`}
                 >
                   Security
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

@@ -56,7 +56,7 @@ Use this checklist to track your progress through the roadmap.
 - [ ] User profile API
 - [ ] Profile update API
 - [x] Avatar upload (UI)
-- [ ] Account deletion
+- [x] Account deletion (UI)
 
 ## Phase 3: Landing Page & Marketing
 
@@ -230,7 +230,7 @@ Use this checklist to track your progress through the roadmap.
 - [ ] Preferences
 - [ ] API keys (optional)
 - [ ] Data export
-- [ ] Account deletion
+- [x] Account deletion (UI)
 - [ ] Organization model
 - [ ] Team member model
 - [ ] Roles system

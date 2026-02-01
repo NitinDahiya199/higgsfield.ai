@@ -1,10 +1,24 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { useAuth } from "@/contexts/auth-context";
 import { theme } from "@/lib/theme";
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { user, logout } = useAuth();
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      router.push("/login");
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+  };
 
   return (
     <header
@@ -38,37 +52,37 @@ export function Header() {
 
         {/* Main Navigation Menu */}
         <div className="hidden items-center gap-6 lg:flex xl:gap-8">
-          <a
+          <Link
             href="#image"
             className={`text-sm ${theme.textPrimary} transition-colors hover:text-[${theme.accent.primary}] focus:outline-none focus:ring-2 focus:ring-[${theme.accent.primary}] focus:ring-offset-2 focus:ring-offset-[${theme.background.primary}]`}
           >
             Image
-          </a>
-          <a
+          </Link>
+          <Link
             href="#video"
             className={`text-sm ${theme.textPrimary} transition-colors hover:text-[${theme.accent.primary}] focus:outline-none focus:ring-2 focus:ring-[${theme.accent.primary}] focus:ring-offset-2 focus:ring-offset-[${theme.background.primary}]`}
           >
             Video
-          </a>
-          <a
+          </Link>
+          <Link
             href="#edit"
             className={`text-sm ${theme.textPrimary} transition-colors hover:text-[${theme.accent.primary}] focus:outline-none focus:ring-2 focus:ring-[${theme.accent.primary}] focus:ring-offset-2 focus:ring-offset-[${theme.background.primary}]`}
           >
             Edit
-          </a>
-          <a
+          </Link>
+          <Link
             href="#character"
             className={`text-sm ${theme.textPrimary} transition-colors hover:text-[${theme.accent.primary}] focus:outline-none focus:ring-2 focus:ring-[${theme.accent.primary}] focus:ring-offset-2 focus:ring-offset-[${theme.background.primary}]`}
           >
             Character
-          </a>
-          <a
+          </Link>
+          <Link
             href="#inpaint"
             className={`text-sm ${theme.textPrimary} transition-colors hover:text-[${theme.accent.primary}] focus:outline-none focus:ring-2 focus:ring-[${theme.accent.primary}] focus:ring-offset-2 focus:ring-offset-[${theme.background.primary}]`}
           >
             Inpaint
-          </a>
-          <a
+          </Link>
+          <Link
             href="#cinema-studio"
             className={`flex items-center gap-2 text-sm ${theme.textPrimary} transition-colors hover:text-[${theme.accent.primary}] focus:outline-none focus:ring-2 focus:ring-[${theme.accent.primary}] focus:ring-offset-2 focus:ring-offset-[${theme.background.primary}]`}
           >
@@ -78,14 +92,14 @@ export function Header() {
             >
               v1.5
             </span>
-          </a>
-          <a
+          </Link>
+          <Link
             href="#motion-control"
             className={`text-sm ${theme.textPrimary} transition-colors hover:text-[${theme.accent.primary}] focus:outline-none focus:ring-2 focus:ring-[${theme.accent.primary}] focus:ring-offset-2 focus:ring-offset-[${theme.background.primary}]`}
           >
             Motion Control
-          </a>
-          <a
+          </Link>
+          <Link
             href="#ai-influencer"
             className={`flex items-center gap-2 text-sm ${theme.textPrimary} transition-colors hover:text-[${theme.accent.primary}] focus:outline-none focus:ring-2 focus:ring-[${theme.accent.primary}] focus:ring-offset-2 focus:ring-offset-[${theme.background.primary}]`}
           >
@@ -95,47 +109,72 @@ export function Header() {
             >
               Free
             </span>
-          </a>
-          <a
+          </Link>
+          <Link
             href="#assist"
             className={`text-sm ${theme.textPrimary} transition-colors hover:text-[${theme.accent.primary}] focus:outline-none focus:ring-2 focus:ring-[${theme.accent.primary}] focus:ring-offset-2 focus:ring-offset-[${theme.background.primary}]`}
           >
             Assist
-          </a>
-          <a
+          </Link>
+          <Link
             href="#apps"
             className={`text-sm ${theme.textPrimary} transition-colors hover:text-[${theme.accent.primary}] focus:outline-none focus:ring-2 focus:ring-[${theme.accent.primary}] focus:ring-offset-2 focus:ring-offset-[${theme.background.primary}]`}
           >
             Apps
-          </a>
-          <a
+          </Link>
+          <Link
             href="#community"
             className={`text-sm ${theme.textPrimary} transition-colors hover:text-[${theme.accent.primary}] focus:outline-none focus:ring-2 focus:ring-[${theme.accent.primary}] focus:ring-offset-2 focus:ring-offset-[${theme.background.primary}]`}
           >
             Community
-          </a>
+          </Link>
         </div>
 
-        {/* Right Side: Pricing, Login, Sign up */}
+        {/* Right Side: Pricing, Login, Sign up / User Menu */}
         <div className="flex items-center gap-4">
-          <a
+          <Link
             href="#pricing"
             className={`hidden text-sm ${theme.textPrimary} transition-colors hover:text-[${theme.accent.primary}] lg:inline-block focus:outline-none focus:ring-2 focus:ring-[${theme.accent.primary}] focus:ring-offset-2 focus:ring-offset-[${theme.background.primary}]`}
           >
             Pricing
-          </a>
-          <a
-            href="#login"
-            className={`hidden rounded-sm ${theme.buttonDark} px-4 py-2 text-sm font-medium ${theme.textPrimary} transition-colors hover:bg-[${theme.button.darkHover}] sm:inline-block focus:outline-none focus:ring-2 focus:ring-[${theme.accent.primary}] focus:ring-offset-2 focus:ring-offset-[${theme.background.primary}]`}
-          >
-            Login
-          </a>
-          <a
-            href="#signup"
-            className={`hidden rounded-sm bg-[${theme.accent.primary}] px-4 py-2 text-sm font-medium ${theme.textDark} transition-opacity hover:opacity-90 sm:inline-block focus:outline-none focus:ring-2 focus:ring-[${theme.accent.primary}] focus:ring-offset-2 focus:ring-offset-[${theme.background.primary}]`}
-          >
-            Sign up
-          </a>
+          </Link>
+          {user ? (
+            <>
+              <Link
+                href="/dashboard"
+                className={`hidden rounded-sm ${theme.buttonDark} px-4 py-2 text-sm font-medium ${theme.textPrimary} transition-colors hover:bg-[${theme.button.darkHover}] sm:inline-block focus:outline-none focus:ring-2 focus:ring-[${theme.accent.primary}] focus:ring-offset-2 focus:ring-offset-[${theme.background.primary}]`}
+              >
+                Dashboard
+              </Link>
+              <Link
+                href="/profile"
+                className={`hidden rounded-sm ${theme.buttonDark} px-4 py-2 text-sm font-medium ${theme.textPrimary} transition-colors hover:bg-[${theme.button.darkHover}] sm:inline-block focus:outline-none focus:ring-2 focus:ring-[${theme.accent.primary}] focus:ring-offset-2 focus:ring-offset-[${theme.background.primary}]`}
+              >
+                Profile
+              </Link>
+              <button
+                onClick={handleLogout}
+                className={`hidden rounded-sm border border-[#1F2329] bg-[#151A20] px-4 py-2 text-sm font-medium text-[#EDEDED] transition-colors hover:border-red-500/50 hover:bg-red-500/10 hover:text-red-400 sm:inline-block focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-[${theme.background.primary}]`}
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link
+                href="/login"
+                className={`hidden rounded-sm ${theme.buttonDark} px-4 py-2 text-sm font-medium ${theme.textPrimary} transition-colors hover:bg-[${theme.button.darkHover}] sm:inline-block focus:outline-none focus:ring-2 focus:ring-[${theme.accent.primary}] focus:ring-offset-2 focus:ring-offset-[${theme.background.primary}]`}
+              >
+                Login
+              </Link>
+              <Link
+                href="/signup"
+                className={`hidden rounded-sm bg-[${theme.accent.primary}] px-4 py-2 text-sm font-medium ${theme.textDark} transition-opacity hover:opacity-90 sm:inline-block focus:outline-none focus:ring-2 focus:ring-[${theme.accent.primary}] focus:ring-offset-2 focus:ring-offset-[${theme.background.primary}]`}
+              >
+                Sign up
+              </Link>
+            </>
+          )}
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -168,37 +207,37 @@ export function Header() {
       {isMobileMenuOpen && (
         <div className={`lg:hidden border-t ${theme.borderDefault} ${theme.bgPrimary}`}>
           <div className="mx-auto max-w-7xl px-6 py-4 space-y-3">
-            <a
+            <Link
               href="#image"
               className={`block text-sm ${theme.textPrimary} transition-colors hover:text-[${theme.accent.primary}] py-2`}
             >
               Image
-            </a>
-            <a
+            </Link>
+            <Link
               href="#video"
               className={`block text-sm ${theme.textPrimary} transition-colors hover:text-[${theme.accent.primary}] py-2`}
             >
               Video
-            </a>
-            <a
+            </Link>
+            <Link
               href="#edit"
               className={`block text-sm ${theme.textPrimary} transition-colors hover:text-[${theme.accent.primary}] py-2`}
             >
               Edit
-            </a>
-            <a
+            </Link>
+            <Link
               href="#character"
               className={`block text-sm ${theme.textPrimary} transition-colors hover:text-[${theme.accent.primary}] py-2`}
             >
               Character
-            </a>
-            <a
+            </Link>
+            <Link
               href="#inpaint"
               className={`block text-sm ${theme.textPrimary} transition-colors hover:text-[${theme.accent.primary}] py-2`}
             >
               Inpaint
-            </a>
-            <a
+            </Link>
+            <Link
               href="#cinema-studio"
               className={`flex items-center gap-2 text-sm ${theme.textPrimary} transition-colors hover:text-[${theme.accent.primary}] py-2`}
             >
@@ -208,14 +247,14 @@ export function Header() {
               >
                 v1.5
               </span>
-            </a>
-            <a
+            </Link>
+            <Link
               href="#motion-control"
               className={`block text-sm ${theme.textPrimary} transition-colors hover:text-[${theme.accent.primary}] py-2`}
             >
               Motion Control
-            </a>
-            <a
+            </Link>
+            <Link
               href="#ai-influencer"
               className={`flex items-center gap-2 text-sm ${theme.textPrimary} transition-colors hover:text-[${theme.accent.primary}] py-2`}
             >
@@ -225,44 +264,69 @@ export function Header() {
               >
                 Free
               </span>
-            </a>
-            <a
+            </Link>
+            <Link
               href="#assist"
               className={`block text-sm ${theme.textPrimary} transition-colors hover:text-[${theme.accent.primary}] py-2`}
             >
               Assist
-            </a>
-            <a
+            </Link>
+            <Link
               href="#apps"
               className={`block text-sm ${theme.textPrimary} transition-colors hover:text-[${theme.accent.primary}] py-2`}
             >
               Apps
-            </a>
-            <a
+            </Link>
+            <Link
               href="#community"
               className={`block text-sm ${theme.textPrimary} transition-colors hover:text-[${theme.accent.primary}] py-2`}
             >
               Community
-            </a>
-            <a
+            </Link>
+            <Link
               href="#pricing"
               className={`block text-sm ${theme.textPrimary} transition-colors hover:text-[${theme.accent.primary}] py-2`}
             >
               Pricing
-            </a>
+            </Link>
             <div className={`pt-4 space-y-2 border-t ${theme.borderDefault}`}>
-              <a
-                href="#login"
-                className={`block w-full rounded-sm ${theme.buttonDark} px-4 py-2 text-center text-sm font-medium ${theme.textPrimary} transition-colors hover:bg-[${theme.button.darkHover}]`}
-              >
-                Login
-              </a>
-              <a
-                href="#signup"
-                className={`block w-full rounded-sm bg-[${theme.accent.primary}] px-4 py-2 text-center text-sm font-medium ${theme.textDark} transition-opacity hover:opacity-90`}
-              >
-                Sign up
-              </a>
+              {user ? (
+                <>
+                  <Link
+                    href="/dashboard"
+                    className={`block w-full rounded-sm ${theme.buttonDark} px-4 py-2 text-center text-sm font-medium ${theme.textPrimary} transition-colors hover:bg-[${theme.button.darkHover}]`}
+                  >
+                    Dashboard
+                  </Link>
+                  <Link
+                    href="/profile"
+                    className={`block w-full rounded-sm ${theme.buttonDark} px-4 py-2 text-center text-sm font-medium ${theme.textPrimary} transition-colors hover:bg-[${theme.button.darkHover}]`}
+                  >
+                    Profile
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className={`block w-full rounded-sm border border-[#1F2329] bg-[#151A20] px-4 py-2 text-center text-sm font-medium text-[#EDEDED] transition-colors hover:border-red-500/50 hover:bg-red-500/10 hover:text-red-400`}
+                  >
+                    Logout
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link
+                    href="/login"
+                    className={`block w-full rounded-sm ${theme.buttonDark} px-4 py-2 text-center text-sm font-medium ${theme.textPrimary} transition-colors hover:bg-[${theme.button.darkHover}]`}
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    href="/signup"
+                    className={`block w-full rounded-sm bg-[${theme.accent.primary}] px-4 py-2 text-center text-sm font-medium ${theme.textDark} transition-opacity hover:opacity-90`}
+                  >
+                    Sign up
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>

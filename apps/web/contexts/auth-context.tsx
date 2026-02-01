@@ -130,7 +130,37 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const refreshUser = async () => {
-    await checkAuth();
+    setLoading(true);
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        setLoading(false);
+        return;
+      }
+
+      const response = await fetch(`${API_URL}/api/auth/me`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        const userData = await response.json();
+        setUser(userData);
+      } else {
+        // Token might be invalid, clear it
+        localStorage.removeItem("token");
+        localStorage.removeItem("refreshToken");
+        setUser(null);
+      }
+    } catch (error) {
+      console.error("Refresh user failed:", error);
+      localStorage.removeItem("token");
+      localStorage.removeItem("refreshToken");
+      setUser(null);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
