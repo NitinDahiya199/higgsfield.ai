@@ -1,21 +1,19 @@
 "use client";
 
 import { ProtectedRoute } from "@/components/auth/protected-route";
+import { DashboardLayout } from "@/components/dashboard/dashboard-layout";
 import { AvatarUpload } from "@/components/profile/avatar-upload";
 import { ProfileForm } from "@/components/profile/profile-form";
 import { AccountDeletion } from "@/components/profile/account-deletion";
 import { useAuth } from "@/contexts/auth-context";
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
 
 export default function ProfilePage() {
   const { user } = useAuth();
 
   return (
     <ProtectedRoute>
-      <div className="min-h-screen bg-[#0B0D0F]">
-        <Header />
-        <main className="mx-auto max-w-7xl px-6 py-12 pt-24 lg:px-12">
+      <DashboardLayout>
+        <div className="mx-auto max-w-7xl px-6 py-8 lg:px-12">
           <div className="mb-8">
             <h1 className="text-3xl font-semibold text-[#EDEDED]">Profile</h1>
             <p className="mt-2 text-sm text-[#9AA0A6]">
@@ -60,9 +58,8 @@ export default function ProfilePage() {
             {/* Account Deletion */}
             <AccountDeletion />
           </div>
-        </main>
-        <Footer />
-      </div>
+        </div>
+      </DashboardLayout>
     </ProtectedRoute>
   );
 }

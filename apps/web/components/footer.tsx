@@ -110,9 +110,23 @@ export function Footer() {
         </div>
 
         <div
-          className={`mt-12 border-t ${theme.borderDefault} pt-8 text-center text-sm ${theme.textMuted}`}
+          className={`mt-12 border-t ${theme.borderDefault} pt-8 flex flex-col items-center justify-between gap-4 sm:flex-row text-sm ${theme.textMuted}`}
         >
           <p>© {new Date().getFullYear()} Higgsfield AI. All rights reserved.</p>
+          <div className="flex gap-6">
+            <Link
+              href="/terms"
+              className={`transition-colors hover:text-[${theme.text.primary}] focus:outline-none focus:ring-2 focus:ring-[${theme.accent.primary}] focus:ring-offset-2 focus:ring-offset-[${theme.background.primary}]`}
+            >
+              Terms of Service
+            </Link>
+            <Link
+              href="/privacy"
+              className={`transition-colors hover:text-[${theme.text.primary}] focus:outline-none focus:ring-2 focus:ring-[${theme.accent.primary}] focus:ring-offset-2 focus:ring-offset-[${theme.background.primary}]`}
+            >
+              Privacy Policy
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

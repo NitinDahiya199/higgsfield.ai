@@ -299,7 +299,7 @@ export function Header() {
                     Dashboard
                   </Link>
                   <Link
-                    href="/profile"
+                    href="/dashboard/profile"
                     className={`block w-full rounded-sm ${theme.buttonDark} px-4 py-2 text-center text-sm font-medium ${theme.textPrimary} transition-colors hover:bg-[${theme.button.darkHover}]`}
                   >
                     Profile

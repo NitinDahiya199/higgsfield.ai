@@ -629,6 +629,561 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Pricing Preview Section */}
+      <section
+        id="pricing"
+        className="border-t border-[#1F2329] bg-[#111418] py-16 lg:py-24"
+        aria-labelledby="pricing-heading"
+      >
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          <div className="mb-12 text-center">
+            <h2
+              id="pricing-heading"
+              className="mb-4 text-3xl font-semibold leading-tight tracking-tight text-[#EDEDED] lg:text-4xl"
+            >
+              Simple, transparent pricing
+            </h2>
+            <p className="text-base text-[#9AA0A6] lg:text-lg">
+              Choose the plan that works best for you. Start free, upgrade anytime.
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-3 lg:gap-8">
+            {/* Free Plan */}
+            <div className="rounded-sm border border-[#1F2329] bg-[#151A20] p-6 transition-all hover:border-[#B8FF00] hover:shadow-lg hover:shadow-[#B8FF00]/10">
+              <div className="mb-4">
+                <h3 className="text-xl font-semibold text-[#EDEDED]">Free</h3>
+                <div className="mt-2 flex items-baseline gap-1">
+                  <span className="text-3xl font-semibold text-[#EDEDED]">$0</span>
+                  <span className="text-sm text-[#9AA0A6]">/month</span>
+                </div>
+              </div>
+              <ul className="mb-6 space-y-3 text-sm text-[#9AA0A6]">
+                <li className="flex items-start gap-2">
+                  <svg
+                    className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#B8FF00]"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span>10 image generations per month</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <svg
+                    className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#B8FF00]"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span>5 video generations per month</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <svg
+                    className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#B8FF00]"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span>Basic motion presets</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <svg
+                    className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#B8FF00]"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span>Community support</span>
+                </li>
+              </ul>
+              <a
+                href="/signup"
+                className="block w-full rounded-sm border border-[#1F2329] bg-transparent px-4 py-2 text-center text-sm font-medium text-[#EDEDED] transition-colors hover:border-[#B8FF00] hover:text-[#B8FF00]"
+              >
+                Get started
+              </a>
+            </div>
+
+            {/* Pro Plan */}
+            <div className="relative rounded-sm border-2 border-[#B8FF00] bg-[#151A20] p-6 shadow-lg shadow-[#B8FF00]/20">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                <span className="rounded-sm bg-[#B8FF00] px-3 py-1 text-xs font-semibold text-[#0B0D0F]">
+                  Most Popular
+                </span>
+              </div>
+              <div className="mb-4">
+                <h3 className="text-xl font-semibold text-[#EDEDED]">Pro</h3>
+                <div className="mt-2 flex items-baseline gap-1">
+                  <span className="text-3xl font-semibold text-[#EDEDED]">$29</span>
+                  <span className="text-sm text-[#9AA0A6]">/month</span>
+                </div>
+              </div>
+              <ul className="mb-6 space-y-3 text-sm text-[#9AA0A6]">
+                <li className="flex items-start gap-2">
+                  <svg
+                    className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#B8FF00]"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span>Unlimited image generations</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <svg
+                    className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#B8FF00]"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span>100 video generations per month</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <svg
+                    className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#B8FF00]"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span>All motion presets</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <svg
+                    className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#B8FF00]"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span>Priority support</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <svg
+                    className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#B8FF00]"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span>HD quality exports</span>
+                </li>
+              </ul>
+              <a
+                href="/signup"
+                className="block w-full rounded-sm bg-[#B8FF00] px-4 py-2 text-center text-sm font-medium text-[#0B0D0F] transition-opacity hover:opacity-90"
+              >
+                Start free trial
+              </a>
+            </div>
+
+            {/* Enterprise Plan */}
+            <div className="rounded-sm border border-[#1F2329] bg-[#151A20] p-6 transition-all hover:border-[#B8FF00] hover:shadow-lg hover:shadow-[#B8FF00]/10">
+              <div className="mb-4">
+                <h3 className="text-xl font-semibold text-[#EDEDED]">Enterprise</h3>
+                <div className="mt-2 flex items-baseline gap-1">
+                  <span className="text-3xl font-semibold text-[#EDEDED]">Custom</span>
+                </div>
+              </div>
+              <ul className="mb-6 space-y-3 text-sm text-[#9AA0A6]">
+                <li className="flex items-start gap-2">
+                  <svg
+                    className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#B8FF00]"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span>Unlimited everything</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <svg
+                    className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#B8FF00]"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span>4K quality exports</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <svg
+                    className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#B8FF00]"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span>Dedicated support</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <svg
+                    className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#B8FF00]"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span>Custom integrations</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <svg
+                    className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#B8FF00]"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span>SLA guarantee</span>
+                </li>
+              </ul>
+              <a
+                href="#contact"
+                className="block w-full rounded-sm border border-[#1F2329] bg-transparent px-4 py-2 text-center text-sm font-medium text-[#EDEDED] transition-colors hover:border-[#B8FF00] hover:text-[#B8FF00]"
+              >
+                Contact sales
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section
+        className="border-t border-[#1F2329] bg-[#0B0D0F] py-16 lg:py-24"
+        aria-labelledby="testimonials-heading"
+      >
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          <div className="mb-12 text-center">
+            <h2
+              id="testimonials-heading"
+              className="mb-4 text-3xl font-semibold leading-tight tracking-tight text-[#EDEDED] lg:text-4xl"
+            >
+              Loved by creators worldwide
+            </h2>
+            <p className="text-base text-[#9AA0A6] lg:text-lg">
+              See what our community is saying about Higgsfield
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                name: "Sarah Chen",
+                role: "Content Creator",
+                avatar: "SC",
+                text: "Higgsfield has completely transformed my content creation workflow. The AI-powered tools are incredibly intuitive and produce stunning results.",
+              },
+              {
+                name: "Marcus Rodriguez",
+                role: "Video Producer",
+                avatar: "MR",
+                text: "The motion control features are game-changing. I can create professional-grade videos in minutes that used to take hours.",
+              },
+              {
+                name: "Emily Johnson",
+                role: "Digital Artist",
+                avatar: "EJ",
+                text: "As a digital artist, I love how easy it is to experiment with different styles and presets. The quality is consistently impressive.",
+              },
+              {
+                name: "David Kim",
+                role: "Marketing Director",
+                avatar: "DK",
+                text: "We use Higgsfield for all our social media content. It's fast, reliable, and the results speak for themselves.",
+              },
+              {
+                name: "Lisa Wang",
+                role: "Indie Filmmaker",
+                avatar: "LW",
+                text: "The cinematic presets are incredible. I've created videos that look like they came from a big-budget production.",
+              },
+              {
+                name: "James Taylor",
+                role: "Creative Director",
+                avatar: "JT",
+                text: "Higgsfield is the future of content creation. The AI understands context and delivers exactly what you envision.",
+              },
+            ].map((testimonial, index) => (
+              <div
+                key={index}
+                className="rounded-sm border border-[#1F2329] bg-[#151A20] p-6 transition-all hover:border-[#B8FF00] hover:shadow-lg hover:shadow-[#B8FF00]/10"
+              >
+                <div className="mb-4 flex items-center gap-3">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#B8FF00] text-sm font-semibold text-[#0B0D0F]">
+                    {testimonial.avatar}
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-semibold text-[#EDEDED]">{testimonial.name}</h4>
+                    <p className="text-xs text-[#9AA0A6]">{testimonial.role}</p>
+                  </div>
+                </div>
+                <p className="text-sm leading-relaxed text-[#9AA0A6]">{testimonial.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Video/Image Gallery Section */}
+      <section
+        id="gallery"
+        className="border-t border-[#1F2329] bg-[#111418] py-16 lg:py-24"
+        aria-labelledby="gallery-heading"
+      >
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          <div className="mb-12 text-center">
+            <h2
+              id="gallery-heading"
+              className="mb-4 text-3xl font-semibold leading-tight tracking-tight text-[#EDEDED] lg:text-4xl"
+            >
+              Explore our gallery
+            </h2>
+            <p className="text-base text-[#9AA0A6] lg:text-lg">
+              See what's possible with AI-powered creation
+            </p>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                title: "Cinematic Video",
+                category: "Video",
+                gradient: "from-purple-500/20 to-pink-500/20",
+              },
+              {
+                title: "Portrait Image",
+                category: "Image",
+                gradient: "from-blue-500/20 to-cyan-500/20",
+              },
+              {
+                title: "Motion Control",
+                category: "Video",
+                gradient: "from-green-500/20 to-emerald-500/20",
+              },
+              {
+                title: "Character Design",
+                category: "Image",
+                gradient: "from-orange-500/20 to-red-500/20",
+              },
+              {
+                title: "VFX Sequence",
+                category: "Video",
+                gradient: "from-indigo-500/20 to-purple-500/20",
+              },
+              {
+                title: "Artistic Style",
+                category: "Image",
+                gradient: "from-yellow-500/20 to-amber-500/20",
+              },
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="group relative overflow-hidden rounded-sm border border-[#1F2329] bg-[#151A20] transition-all hover:border-[#B8FF00] hover:shadow-lg hover:shadow-[#B8FF00]/10"
+              >
+                <div
+                  className={`h-48 bg-gradient-to-br ${item.gradient} transition-transform duration-300 group-hover:scale-105`}
+                />
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100">
+                  <div className="rounded-sm bg-[#0B0D0F]/90 px-4 py-2 text-center">
+                    <p className="text-sm font-medium text-[#EDEDED]">{item.title}</p>
+                    <p className="text-xs text-[#9AA0A6]">{item.category}</p>
+                  </div>
+                </div>
+                <div className="p-4">
+                  <h3 className="text-sm font-semibold text-[#EDEDED]">{item.title}</h3>
+                  <p className="mt-1 text-xs text-[#9AA0A6]">{item.category}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section
+        id="faq"
+        className="border-t border-[#1F2329] bg-[#0B0D0F] py-16 lg:py-24"
+        aria-labelledby="faq-heading"
+      >
+        <div className="mx-auto max-w-4xl px-6 lg:px-12">
+          <div className="mb-12 text-center">
+            <h2
+              id="faq-heading"
+              className="mb-4 text-3xl font-semibold leading-tight tracking-tight text-[#EDEDED] lg:text-4xl"
+            >
+              Frequently asked questions
+            </h2>
+            <p className="text-base text-[#9AA0A6] lg:text-lg">
+              Everything you need to know about Higgsfield
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            {[
+              {
+                question: "What is Higgsfield?",
+                answer:
+                  "Higgsfield is an AI-powered creative platform that enables you to generate stunning images, create cinematic videos, and build AI influencers. Our platform combines cutting-edge AI technology with intuitive tools to make professional content creation accessible to everyone.",
+              },
+              {
+                question: "How does the AI video generation work?",
+                answer:
+                  "Our AI video generation uses advanced models to transform text prompts and images into high-quality videos. You can start with a text description, upload an image, or use our motion control features to create precise, cinematic movements.",
+              },
+              {
+                question: "What file formats are supported?",
+                answer:
+                  "We support a wide range of formats including JPEG, PNG for images, and MP4, MOV for videos. You can export your creations in various resolutions up to 4K quality depending on your plan.",
+              },
+              {
+                question: "Can I use the content commercially?",
+                answer:
+                  "Yes! Content created with Higgsfield can be used for commercial purposes. You own the rights to all content you create using our platform. Please review our Terms of Service for complete details.",
+              },
+              {
+                question: "How do I get started?",
+                answer:
+                  "Getting started is easy! Simply sign up for a free account, and you'll have access to our basic features immediately. You can start creating right away with our intuitive interface.",
+              },
+              {
+                question: "What payment methods do you accept?",
+                answer:
+                  "We accept all major credit cards and support payments through Stripe. Enterprise customers can also arrange custom billing terms. All payments are processed securely.",
+              },
+            ].map((faq, index) => (
+              <details
+                key={index}
+                className="group rounded-sm border border-[#1F2329] bg-[#151A20] transition-all hover:border-[#B8FF00]"
+              >
+                <summary className="cursor-pointer px-6 py-4 text-base font-semibold text-[#EDEDED] transition-colors hover:text-[#B8FF00]">
+                  {faq.question}
+                  <svg
+                    className="ml-2 inline-block h-5 w-5 transition-transform group-open:rotate-180"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </summary>
+                <div className="px-6 pb-4">
+                  <p className="text-sm leading-relaxed text-[#9AA0A6]">{faq.answer}</p>
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Newsletter Signup Section */}
+      <section
+        className="border-t border-[#1F2329] bg-[#111418] py-16 lg:py-24"
+        aria-labelledby="newsletter-heading"
+      >
+        <div className="mx-auto max-w-2xl px-6 text-center lg:px-12">
+          <h2
+            id="newsletter-heading"
+            className="mb-4 text-3xl font-semibold leading-tight tracking-tight text-[#EDEDED] lg:text-4xl"
+          >
+            Stay updated
+          </h2>
+          <p className="mb-8 text-base text-[#9AA0A6] lg:text-lg">
+            Get the latest updates, new features, and creative tips delivered to your inbox.
+          </p>
+          <form
+            className="mx-auto flex max-w-md flex-col gap-3 sm:flex-row"
+            onSubmit={(e) => {
+              e.preventDefault();
+              // Newsletter signup logic would go here
+              alert("Thank you for subscribing! Check your email for confirmation.");
+            }}
+          >
+            <input
+              type="email"
+              placeholder="Enter your email"
+              required
+              className="flex-1 rounded-sm border border-[#1F2329] bg-[#151A20] px-4 py-3 text-sm text-[#EDEDED] placeholder:text-[#9AA0A6] focus:border-[#B8FF00] focus:outline-none focus:ring-2 focus:ring-[#B8FF00] focus:ring-offset-2 focus:ring-offset-[#111418]"
+            />
+            <button
+              type="submit"
+              className="rounded-sm bg-[#B8FF00] px-6 py-3 text-sm font-medium text-[#0B0D0F] transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#B8FF00] focus:ring-offset-2 focus:ring-offset-[#111418]"
+            >
+              Subscribe
+            </button>
+          </form>
+          <p className="mt-4 text-xs text-[#9AA0A6]">
+            We respect your privacy. Unsubscribe at any time.
+          </p>
+        </div>
+      </section>
+
       {/* CTA Section — Updated to match reference style */}
       <section
         className="border-t border-[#1F2329] bg-[#0B0D0F] py-16 lg:py-24"
@@ -647,14 +1202,14 @@ export default function Home() {
           </p>
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a
-              href="#signup"
+              href="/signup"
               className="inline-flex items-center justify-center gap-2 rounded-sm bg-[#B8FF00] px-6 py-3 text-sm font-medium text-[#0B0D0F] transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#B8FF00] focus:ring-offset-2 focus:ring-offset-[#0B0D0F] lg:px-8 lg:py-4 lg:text-base"
             >
               Get started for free
               <ArrowRightIcon className="w-4 h-4" />
             </a>
             <a
-              href="#community"
+              href="#gallery"
               className="inline-flex items-center justify-center rounded-sm border border-[#1F2329] bg-transparent px-6 py-3 text-sm font-medium text-[#EDEDED] transition-colors hover:border-[#B8FF00] hover:text-[#B8FF00] focus:outline-none focus:ring-2 focus:ring-[#B8FF00] focus:ring-offset-2 focus:ring-offset-[#0B0D0F] lg:px-8 lg:py-4 lg:text-base"
             >
               Explore Community Gallery

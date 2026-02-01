@@ -6,6 +6,7 @@ import { DatabaseModule } from "./database/database.module";
 import { CommonModule } from "./common/common.module";
 import { QueuesModule } from "./queues/queues.module";
 import { AuthModule } from "./auth/auth.module";
+import { ProjectsModule } from "./projects/projects.module";
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { AuthModule } from "./auth/auth.module";
     CommonModule,
     QueuesModule,
     AuthModule,
+    ProjectsModule,
     ThrottlerModule.forRoot([
       {
         ttl: 60000, // 1 minute
